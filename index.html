@@ -1,260 +1,278 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sundruu × Chuiimuii 🌻</title><style>
 
+<title>Sundruu × Chuiimuii 🌻</title>
+
+<style>
 *{
+margin:0;
+padding:0;
 box-sizing:border-box;
 }
 
 body{
-margin:0;
 font-family:Arial;
+background:
+linear-gradient(180deg,#090912,#151524,#222236);
 color:white;
 text-align:center;
-background:
-linear-gradient(
-180deg,
-#090912,
-#171728,
-#11111a
-);
-overflow-x:hidden;
+padding:20px;
 }
 
-.stars{
-position:fixed;
-top:0;
-width:100%;
-opacity:.15;
-font-size:22px;
-animation:float 10s infinite;
-pointer-events:none;
-}
-
-@keyframes float{
-0%{transform:translateY(0)}
-50%{transform:translateY(20px)}
-100%{transform:translateY(0)}
-}
-
-#welcome{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:30px;
-animation:fade 1.5s;
-}
-
-#main{
-display:none;
-padding:25px;
-animation:fade 1s;
-}
-
-@keyframes fade{
-from{opacity:0}
-to{opacity:1}
-}
-
-.box{
-max-width:760px;
-margin:25px auto;
-padding:28px;
-border-radius:28px;
-background:rgba(255,255,255,.05);
+.card{
+background:rgba(255,255,255,.06);
+padding:20px;
+margin:18px 0;
+border-radius:24px;
 backdrop-filter:blur(10px);
 }
 
-button,
-.action{
-display:inline-block;
-padding:16px 24px;
-border-radius:999px;
-background:#ffd86a;
-color:black;
-text-decoration:none;
+h1{
+font-size:38px;
+}
+
+.sub{
+opacity:.7;
+margin-top:8px;
+}
+
+button{
+padding:14px 20px;
 border:none;
+border-radius:18px;
+background:#ffc857;
 font-size:16px;
+margin:10px;
 }
 
-.timer{
+input{
+width:100%;
+padding:12px;
+border-radius:14px;
+border:none;
+margin-top:10px;
+}
+
+iframe{
+width:100%;
+height:280px;
+border-radius:18px;
+border:none;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.photo{
+background:#222;
+padding:10px;
+border-radius:16px;
+}
+
+img{
+width:100%;
+border-radius:12px;
+}
+
+.msg{
+background:#1c1c2d;
+padding:12px;
+margin:8px;
+border-radius:14px;
+}
+
+.counter{
 font-size:30px;
-line-height:1.8;
-color:#ffd86a;
+margin-top:10px;
+color:#ffd54f;
 }
 
-.details{
-line-height:2;
+footer{
+opacity:.5;
+margin-top:40px;
 }
+</style>
+</head>
 
-</style></head><body><div class="stars">
-✨ 🌻 ✨ 🌙 ⭐ 🌻 ✨
-</div><div id="welcome"><h1>
-Sundruu × Chuiimuii 🌻🌻
-</h1><p>
-A tiny place made for us.
-</p><br><button onclick="openPage()">
-Open ❤️
-</button></div><div id="main"><div class="box"><h1>
-⏳ Our Time
-</h1><div class="timer" id="timer">
-Loading...
-</div><p>
-Not counting time.Collecting us.
+<body>
 
-</p></div><div class="box"><h1>
-💌 Love Note
-</h1><div class="details">If someday this timer becomes huge—
+<div class="card">
 
-I hope we don't remember numbers.
+<h1>🌻 Our Sunflower Garden</h1>
 
-I hope we remember tiny things.
+<div class="sub">
+Only for us.
+</div>
 
-Random messages.
+<div class="counter" id="days"></div>
 
-Soft apologies.
+</div>
 
-Sunflower moments.
+<div class="card">
 
-Days that looked ordinary—
+<h2>🎵 Our Song</h2>
 
-but secretly became memories.
+<p>Replace below link with your song</p>
 
-I don't want perfect.
+<iframe
+src="https://open.spotify.com/embed/track/11dFghVXANMlKmJXsNCbNl">
+</iframe>
 
-I want real.
+</div>
 
-I want ordinary days with uuu.
+<div class="card">
 
-And years later—
+<h2>📸 Our Album</h2>
 
-I hope we open this again
+<p>
+Open shared Google Photos album
+</p>
 
-and smile.
+<button
+onclick="
+window.open(
+'https://photos.app.goo.gl/hfDLMp8vAmVtHGw86'
+)
+">
+Open Album
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>💌 Leave a message</h2>
+
+<input
+id="message"
+placeholder="Write something..."
+>
+
+<button onclick="saveMsg()">
+Save
+</button>
+
+<div id="all"></div>
+
+</div>
+
+<div class="card">
+
+<h2>✨ Promise</h2>
+
+<p>
+
+No matter how many days pass,
+this little garden stays.
 
 🌻
 
-— Sundruu
+</p>
 
-</div></div><div class="box"><h1>
-📸 Memory Garden
-</h1><p>Create a Google Photos shared album.
+</div>
 
-Paste its link below.
+<footer>
+made with too much internet
+</footer>
 
-</p><a
-class="action"
-href="PASTE_SHARED_ALBUM_LINK">
+<script>
 
-🌻 Add / Remove Memories
+let start=
+new Date("2026-06-26")
 
-</a></div><div class="box"><h1>
-💬 Our Chat Corner
-</h1><p>Leave thoughts.
+let today=
+new Date()
 
-Leave chaos.
-
-Leave random updates.
-
-</p><a
-class="action"
-href="PASTE_SHARED_NOTE_LINK">
-
-Open Chat 🌙
-
-</a></div><div class="box"><h1>
-🎵 Our Song
-</h1><p>Paste a Spotify / YouTube link later.
-
-</p></div><div class="box"><h1>
-✨ Future
-</h1><div class="details">For future us.
-
-For unseen mornings.
-
-For dreams not built yet.
-
-For photos not taken.
-
-For conversations not started.
-
-If future us opens this—
-
-I hope we say—
-
-we stayed.
-
-🌻🌻
-
-</div></div></div><script>
-
-function openPage(){
-
-document
-.getElementById(
-"welcome"
+let diff=
+Math.floor(
+(today-start)
+/86400000
 )
-.style.display="none";
 
 document
 .getElementById(
-"main"
-)
-.style.display="block";
-
-}
-
-const start=
-new Date(
-"2025-10-25T22:09:00+05:30"
-);
-
-function update(){
-
-const now=
-new Date();
-
-const diff=
-now-start;
-
-const days=
-Math.floor(diff/86400000);
-
-const hrs=
-Math.floor((diff%86400000)/3600000);
-
-const mins=
-Math.floor((diff%3600000)/60000);
-
-const secs=
-Math.floor((diff%60000)/1000);
-
-document
-.getElementById(
-"timer"
+"days"
 )
 .innerHTML=
-days+
-" days<br>"+
-hrs+
-" hrs "+
-mins+
-" mins "+
-secs+
-" sec";
+diff+
+" days"
+
+function saveMsg(){
+
+let x=
+document
+.getElementById(
+"message"
+).value
+
+if(!x)return
+
+let msgs=
+JSON.parse(
+localStorage
+.getItem(
+"garden"
+)
+||"[]"
+)
+
+msgs.push(x)
+
+localStorage.setItem(
+"garden",
+JSON.stringify(msgs)
+)
+
+show()
+
+document
+.getElementById(
+"message"
+).value=""
 
 }
 
-update();
+function show(){
 
-setInterval(
-update,
-1000
-);
+let msgs=
+JSON.parse(
+localStorage
+.getItem(
+"garden"
+)
+||"[]"
+)
 
-</script></body>
+let html=""
+
+msgs.forEach(v=>{
+
+html+=
+`
+<div class='msg'>
+${v}
+</div>
+`
+
+})
+
+document
+.getElementById(
+"all"
+).innerHTML=
+html
+
+}
+
+show()
+
+</script>
+
+</body>
 </html>
